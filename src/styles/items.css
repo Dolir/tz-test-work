@@ -1,0 +1,33 @@
+.items-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 475px);
+  column-gap: 45px;
+  justify-content: center;
+}
+
+.item {
+  justify-content: space-between;
+  background: #ffffff;
+  border-radius: 8px;
+  width: 480px;
+  height: 200px;
+  display: flex;
+  margin-top: 34px;
+}
+.item > button {
+  font-size: 21px;
+  background: #edeff6;
+  border-radius: 0px 8px;
+  height: 31px;
+  width: 31px;
+  outline: none;
+  border: 0;
+}
+.item-info {
+  text-align: left;
+}
+.item img {
+  border-radius: 8px;
+  width: 150px;
+  height: inherit;
+}

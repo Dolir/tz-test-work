@@ -1,0 +1,23 @@
+footer {
+  display: flex;
+  justify-content: center;
+  background: #ffffff;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  background: #ffffff;
+  width: 80%;
+}
+.footer-content h3 {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.footer-content div {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 50px;
+}
+.footer-content div svg {
+  margin-left: 27px;
+}

@@ -1,56 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
-
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
+import Header from "./components/Header";
+import Categories from "./components/Categories";
+import ItemsList from "./components/ItemsList";
+import Cart from "./components/Cart";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUser } from "./features/auth/authSlice";
+import Footer from "./components/Footer";
 function App() {
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  React.useEffect(() => {
+    dispatch(loadUser());
+  }, [auth.isAuthenticated]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <Router>
+        <div className="content">
+          <Header />
+
+          <Switch>
+            <Route path="/cart">
+              <Cart />
+            </Route>
+            <Route path="/category/:categoryName/:categoryId">
+              <ItemsList />
+            </Route>
+            <Route path="/search/:searchTerm">
+              <ItemsList />
+            </Route>
+            <Route path="/">
+              <Categories />
+            </Route>
+          </Switch>
+        </div>
+        <Footer />
+      </Router>
     </div>
   );
 }

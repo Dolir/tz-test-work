@@ -1,0 +1,27 @@
+.categories-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 280px);
+  column-gap: 45px;
+  justify-content: center;
+  list-style: none;
+  padding-left: 0;
+}
+
+.category {
+  background: #ffffff;
+  border-radius: 8px;
+  margin: 0;
+  margin-top: 35px;
+  margin-right: 18px;
+  margin-left: 18px;
+  width: 280px;
+}
+.category img {
+  border-radius: 8px;
+  height: 220px;
+  width: 280px;
+}
+.category h2 {
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}

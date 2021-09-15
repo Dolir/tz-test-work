@@ -1,0 +1,56 @@
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px 0;
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+nav a {
+  text-decoration: none;
+}
+nav a h4 {
+  color: #b0b3bc;
+}
+header h1 {
+  margin: 0 auto;
+  position: relative;
+  left: 110px;
+}
+.auth {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.auth h4 {
+  margin-right: 20px;
+}
+.searchbar-container input {
+  border: 0;
+  outline: none;
+  margin-left: 5px;
+}
+.searchbar-container {
+  margin-right: 50px;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+
+  background: #fff;
+  width: 248px;
+  height: 46px;
+}
+.searchbar {
+  display: flex;
+  align-items: center;
+}
+.active-nav {
+  color: #172853;
+}
