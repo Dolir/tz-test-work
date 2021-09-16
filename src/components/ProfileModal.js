@@ -16,7 +16,6 @@ function ProfileModal({ modal, setModal, data }) {
     dispatch(logout());
   }
   function handleChange(e) {
-    console.log(e.target.checked);
     setChecked(e.target.checked);
     dispatch(updateUserSettings({ notify: e.target.checked }));
   }
