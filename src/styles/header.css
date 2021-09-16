@@ -1,11 +1,16 @@
 header {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
   align-items: center;
+
   margin: 20px 0;
   width: 100%;
 }
-
+.auth-search {
+  display: flex;
+  align-items: center;
+}
 nav {
   display: flex;
   justify-content: space-between;
@@ -18,9 +23,9 @@ nav a h4 {
   color: #b0b3bc;
 }
 header h1 {
-  margin: 0 auto;
-  position: relative;
-  left: 110px;
+  width: 200px;
+  justify-self: center;
+  margin: 0;
 }
 .auth {
   display: flex;
@@ -28,7 +33,11 @@ header h1 {
   justify-content: space-around;
 }
 .auth h4 {
+  cursor: pointer;
   margin-right: 20px;
+}
+.auth svg {
+  cursor: pointer;
 }
 .searchbar-container input {
   border: 0;
@@ -36,21 +45,106 @@ header h1 {
   margin-left: 5px;
 }
 .searchbar-container {
-  margin-right: 50px;
-  justify-content: space-between;
   padding-left: 10px;
   padding-right: 10px;
   display: flex;
   align-items: center;
-
+  margin-right: 30px;
   background: #fff;
-  width: 248px;
+  width: fit-content;
   height: 46px;
 }
+.auth-search {
+  overflow: hidden;
+}
 .searchbar {
+  padding-right: 10px;
   display: flex;
   align-items: center;
 }
 .active-nav {
   color: #172853;
+}
+/* checkbox styles */
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+input:checked + .slider {
+  background: #4376fb;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #4376fb;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(21px);
+  -ms-transform: translateX(21px);
+  transform: translateX(21px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.notifications {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30px;
+  margin-right: 30px;
+  align-items: center;
+  border-bottom: #edf2ff 1px solid;
+  padding-bottom: 20px;
+}
+.log-out {
+  display: flex;
+  margin-left: 30px;
+}
+.log-out button {
+  margin-top: 20px;
+  cursor: pointer;
+  padding: 0;
 }

@@ -54,7 +54,7 @@ function LoginModal({ modal, error }) {
               <input onChange={onChange} name="password" type="password" />{" "}
             </li>
           </ul>
-          <p>{state.msg}</p>
+          <p className="danger-msg">{state.msg}</p>
           <button className="submit-btn">Войти</button>
         </form>
       </div>

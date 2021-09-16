@@ -1,6 +1,10 @@
 import React from "react";
 import Item from "./Item";
-import { getItemsByCategory } from "../features/items/itemsSlice";
+import {
+  getItemsByCategory,
+  clearItems,
+  getItemsBySearchTerm,
+} from "../features/items/itemsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import "../styles/items.css";
@@ -12,26 +16,48 @@ function ItemsList() {
   const auth = useSelector((state) => state.auth);
 
   React.useEffect(() => {
-    dispatch(
-      getItemsByCategory({
-        token: auth.token.access,
-        categoryId: params.categoryId,
-      })
-    );
-    return () => {};
-  }, []);
+    if (params.searchTerm) {
+      dispatch(
+        getItemsBySearchTerm({
+          token: auth.token.access,
+          searchTerm: params.searchTerm,
+        })
+      );
+    } else {
+      dispatch(
+        getItemsByCategory({
+          token: auth.token.access,
+          categoryId: params.categoryId,
+        })
+      );
+    }
+
+    return () => {
+      dispatch(clearItems());
+    };
+  }, [params.searchTerm]);
   return (
     <div>
       <h3 className="path-title">
-        <NavLink to="/">
-          <span>Главная/ </span>
-        </NavLink>
+        {params.searchTerm ? (
+          <React.Fragment>
+            <span>Поиск/ </span>
 
-        <strong>{params.categoryName}</strong>
+            <strong>{params.searchTerm}</strong>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <NavLink to="/">
+              <span>Главная/ </span>
+            </NavLink>
+
+            <strong>{params.categoryName}</strong>
+          </React.Fragment>
+        )}
       </h3>
       <ul className="items-list">
         {items.items.map((item) => (
-          <Item data={item} />
+          <Item data={item} key={item.uuid} />
         ))}
       </ul>
     </div>

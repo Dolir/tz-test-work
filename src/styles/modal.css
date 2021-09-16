@@ -11,10 +11,22 @@
   justify-content: center;
   align-items: center;
 }
+
+.delete-btn {
+  cursor: pointer;
+  margin-left: auto;
+  background: #edeff6;
+  border: 0;
+  border-radius: 0px 8px;
+  height: 30px;
+  width: 30px;
+  outline: none;
+}
 .modal {
   position: absolute;
   width: 406px;
-  height: 310px;
+  min-height: 310px;
+  height: fit-content;
   z-index: 2;
 
   background: #ffffff;
@@ -65,10 +77,13 @@
   background: #4376fb;
   border-radius: 6px;
 }
-.modal p {
+.danger-msg {
   height: 20px;
   font-size: 16px;
   color: red;
+  outline: 0;
+  border: 0;
+  background-color: rgba(255, 255, 255, 0);
 }
 .submit-btn:active {
   filter: brightness(80%);

@@ -19,21 +19,24 @@ function App() {
       <Router>
         <div className="content">
           <Header />
-
-          <Switch>
-            <Route path="/cart">
-              <Cart />
-            </Route>
-            <Route path="/category/:categoryName/:categoryId">
-              <ItemsList />
-            </Route>
-            <Route path="/search/:searchTerm">
-              <ItemsList />
-            </Route>
-            <Route path="/">
-              <Categories />
-            </Route>
-          </Switch>
+          {auth.isAuthenticated ? (
+            <Switch>
+              <Route path="/cart">
+                <Cart />
+              </Route>
+              <Route path="/category/:categoryName/:categoryId">
+                <ItemsList />
+              </Route>
+              <Route path="/search/:searchTerm">
+                <ItemsList />
+              </Route>
+              <Route path="/">
+                <Categories />
+              </Route>
+            </Switch>
+          ) : (
+            ""
+          )}
         </div>
         <Footer />
       </Router>

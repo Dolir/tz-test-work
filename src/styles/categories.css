@@ -1,8 +1,9 @@
 .categories-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 280px);
-  column-gap: 45px;
+  grid-template-columns: repeat(auto-fit, 260px);
+  column-gap: 35px;
   justify-content: center;
+
   list-style: none;
   padding-left: 0;
 }
@@ -12,14 +13,12 @@
   border-radius: 8px;
   margin: 0;
   margin-top: 35px;
-  margin-right: 18px;
-  margin-left: 18px;
-  width: 280px;
+  width: 260px;
 }
 .category img {
   border-radius: 8px;
   height: 220px;
-  width: 280px;
+  width: 260px;
 }
 .category h2 {
   margin-bottom: 0;

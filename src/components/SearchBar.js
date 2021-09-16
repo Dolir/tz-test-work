@@ -1,8 +1,27 @@
 import React from "react";
-
+import { Redirect } from "react-router";
+import { useDispatch } from "react-redux";
 function SearchBar() {
+  const dispatch = useDispatch();
+  const [redirect, setRedirect] = React.useState(false);
+  const [searchTerm, setSearchTerm] = React.useState("");
+  function handleChange(e) {
+    setSearchTerm(e.target.value);
+    if (redirect) {
+      setRedirect(false);
+    }
+  }
+  function handleSubmit(e) {
+    if (e.key === "Enter") {
+      setRedirect(true);
+    }
+  }
+  function handleClear() {
+    setSearchTerm("");
+  }
   return (
     <div className="searchbar-container">
+      {redirect ? <Redirect to={`/search/${searchTerm}`} /> : ""}
       <div className="searchbar">
         <svg
           width="17"
@@ -24,19 +43,34 @@ function SearchBar() {
             fill="#B0B3BC"
           />
         </svg>
-        <input placeholder="Найти вещь" />
+        <input
+          placeholder="Найти вещь"
+          value={searchTerm}
+          onChange={handleChange}
+          onKeyDown={handleSubmit}
+        />
       </div>
-
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 18 18"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M1 1L17 17" stroke="#B0B3BC" strokeWidth="2" />
-        <path d="M17 1L0.999999 17" stroke="#B0B3BC" strokeWidth="2" />
-      </svg>
+      {searchTerm === "" ? (
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        ></svg>
+      ) : (
+        <svg
+          onClick={handleClear}
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M1 1L17 17" stroke="#B0B3BC" strokeWidth="2" />
+          <path d="M17 1L0.999999 17" stroke="#B0B3BC" strokeWidth="2" />
+        </svg>
+      )}
     </div>
   );
 }

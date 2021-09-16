@@ -22,6 +22,22 @@ export const getItemsByCategory = createAsyncThunk(
     return response.data;
   }
 );
+export const getItemsBySearchTerm = createAsyncThunk(
+  "items/getItemsBySearchTerm",
+  async (data) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${data.token}`,
+      },
+    };
+    const response = await axios.get(
+      `https://api.doover.tech/api/products?search=${data.searchTerm}`,
+      config
+    );
+
+    return response.data;
+  }
+);
 export const getCategories = createAsyncThunk(
   "items/getCategories",
   async (token) => {
@@ -42,7 +58,11 @@ export const getCategories = createAsyncThunk(
 export const itemsSlice = createSlice({
   name: "items",
   initialState,
-  reducers: {},
+  reducers: {
+    clearItems: (state) => {
+      state.items = [];
+    },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -59,11 +79,18 @@ export const itemsSlice = createSlice({
       .addCase(getItemsByCategory.fulfilled, (state, action) => {
         state.items = action.payload;
         state.isLoading = false;
+      })
+      .addCase(getItemsBySearchTerm.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getItemsBySearchTerm.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.isLoading = false;
       });
   },
 });
 
-// export const { clearError } = itemsSlice.actions;
+export const { clearItems } = itemsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

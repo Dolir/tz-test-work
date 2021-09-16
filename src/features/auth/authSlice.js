@@ -24,7 +24,23 @@ export const loadUser = createAsyncThunk("auth/loadUser", async () => {
 
   return response.data;
 });
+export const updateUserSettings = createAsyncThunk(
+  "auth/updateUserSettings",
+  async (settings) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+    };
+    const response = await axios.put(
+      "https://api.doover.tech/api/users/settings/",
+      settings,
+      config
+    );
 
+    return response.data;
+  }
+);
 export const login = createAsyncThunk("auth/login", async (user) => {
   const response = await axios
     .post("https://api.doover.tech/api/token/", user)
@@ -38,6 +54,14 @@ export const authSlice = createSlice({
   reducers: {
     clearError: (state) => {
       state.msg = null;
+    },
+    logout: (state) => {
+      state.token = null;
+      state.isAuthenticated = false;
+      state.user = false;
+
+      localStorage.removeItem("access-token");
+      localStorage.removeItem("refresh-token");
     },
   },
 
@@ -80,7 +104,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { clearError } = authSlice.actions;
+export const { clearError, logout } = authSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
