@@ -1,6 +1,5 @@
 header {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 
@@ -10,7 +9,9 @@ header {
 .auth-search {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -23,9 +24,10 @@ nav a h4 {
   color: #b0b3bc;
 }
 header h1 {
-  width: 200px;
-  justify-self: center;
-  margin: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: -1;
 }
 .auth {
   display: flex;
@@ -51,13 +53,12 @@ header h1 {
   align-items: center;
   margin-right: 30px;
   background: #fff;
-  width: fit-content;
+  width: min-content;
   height: 46px;
 }
-.auth-search {
-  overflow: hidden;
-}
+
 .searchbar {
+  width: min-content;
   padding-right: 10px;
   display: flex;
   align-items: center;

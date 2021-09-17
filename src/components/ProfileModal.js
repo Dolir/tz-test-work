@@ -61,7 +61,7 @@ function ProfileModal({ modal, setModal, data }) {
         <h3>Профиль {data.username}</h3>
         <div className="notifications">
           Уведомления{" "}
-          <label class="switch">
+          <label className="switch">
             <input type="checkbox" checked={checked} onChange={handleChange} />
             <span className="slider round"></span>
           </label>

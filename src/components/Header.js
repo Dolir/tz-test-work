@@ -22,17 +22,6 @@ function Header() {
 
   return (
     <header>
-      {auth.isAuthenticated && auth.user ? (
-        <ProfileModal
-          modal={profileModal}
-          setModal={setProfileModal}
-          data={auth.user}
-        />
-      ) : (
-        ""
-      )}
-
-      <LoginModal modal={modal} setModal={setModal} error={auth.msg} />
       <nav>
         <NavLink to="/">
           <h4
@@ -55,10 +44,20 @@ function Header() {
       <div className="auth-search">
         <SearchBar />
         <div className="auth">
+          {" "}
+          <LoginModal modal={modal} setModal={setModal} error={auth.msg} />
           <h4 onClick={() => setProfileModal(true)}>
             {auth.user ? auth.user.username : "Войти"}
           </h4>
-
+          {auth.isAuthenticated && auth.user ? (
+            <ProfileModal
+              modal={profileModal}
+              setModal={setProfileModal}
+              data={auth.user}
+            />
+          ) : (
+            ""
+          )}
           <svg
             onClick={() => setProfileModal(true)}
             width="24"
